@@ -4,9 +4,6 @@ const vldtn = require('./lib/validation');
 // leer article.json
 
 fs.readFile('./article.json', 'utf8' , (err, data) => {
-  if (err) {
-    console.error(err);
-    return
-  }
+  if (err) throw err;
   vldtn.validate(data);
 })
