@@ -5,5 +5,5 @@ const vldtn = require('./lib/validation');
 
 fs.readFile('./article.json', 'utf8' , (err, data) => {
   if (err) throw err;
-  vldtn.validate(data);
+  vldtn.validate(JSON.parse(data));
 })
