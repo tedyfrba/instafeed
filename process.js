@@ -23,10 +23,20 @@ jsonReader('./article.json', (err, data) => {
     }
 
     vldtn.validateWithYup(data, (err, data) => {
+      let file2write = "./db.json";
       if (err) {
         console.error(err);
+        file2write = "./invalid.json";
       }
       console.log(data);
+
+      fs.writeFile(file2write, JSON.stringify(data), 'utf8', err => {
+          if (err) {
+              console.log('Error writing file', err)
+          } else {
+              console.log('Successfully wrote file: ' + file2write)
+          }
+      })
 
     });
 
