@@ -30,7 +30,7 @@ jsonReader('./article.json', (err, data) => {
       }
       console.log(data);
 
-      fs.writeFile(file2write, JSON.stringify(data), 'utf8', err => {
+      fs.appendFile(file2write, JSON.stringify(data)+',\n', 'utf8', err => {
           if (err) {
               console.log('Error writing file', err)
           } else {
