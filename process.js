@@ -1,43 +1,17 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const vldtn = require('./lib/validation');
 
-// leer article.json
-function jsonReader(filePath, callback) {
-    fs.readFile(filePath, 'utf8' , (err, data) => {
-        if (err) {
-            return callback && callback(err)
-        }
-        try {
-            const object = JSON.parse(data)
-            return callback && callback(null, object)
-        } catch(err) {
-            return callback && callback(err)
-        }
-    })
+async function jsonReader(filePath) {
+    let jsonData = await fs.readFile(filePath, 'utf8');
+    return await JSON.parse(jsonData);
 }
 
-jsonReader('./article.json', (err, data) => {
-    if (err) {
-        console.error(err);
-        return
-    }
+async function jsonWriter(filePath, data) {
+    let jsonData = await JSON.stringify(data)+',\n';
+    return await fs.appendFile(filePath, jsonData, 'utf8');
+}
 
-    vldtn.validateWithYup(data, (err, data) => {
-      let file2write = "./db.json";
-      if (err) {
-        console.error(err);
-        file2write = "./invalid.json";
-      }
-      console.log(data);
-
-      fs.appendFile(file2write, JSON.stringify(data)+',\n', 'utf8', err => {
-          if (err) {
-              console.log('Error writing file', err)
-          } else {
-              console.log('Successfully wrote file: ' + file2write)
-          }
-      })
-
-    });
-
-})
+jsonReader('./article.json')
+    .then(data => vldtn.validateWithYup(data))
+    .then(data => jsonWriter('./db.json', data))
+    .catch(e => jsonWriter('./invalid.json', e));
