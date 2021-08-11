@@ -14,3 +14,5 @@ node_modules
 config.gypi
 *.orig
 package-lock.json
+/instafeed.sublime-project
+/instafeed.sublime-workspace

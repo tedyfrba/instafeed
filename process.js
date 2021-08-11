@@ -11,7 +11,21 @@ async function jsonWriter(filePath, data) {
     return await fs.appendFile(filePath, jsonData, 'utf8');
 }
 
-jsonReader('./article.json')
+async function readDir(dirPath) {
+    let files = await fs.readdir(dirPath);
+
+    await Promise.all(
+        files.map(async (file) => jsonReader(dirPath+file)
+            .then(data => vldtn.validateWithYup(data))
+            .then(data => jsonWriter('./db.json', data))
+            .catch(e => jsonWriter('./invalid.json', e.value))
+        )
+    );
+}
+
+readDir('./articles/')
+
+/*jsonReader('./article.json')
     .then(data => vldtn.validateWithYup(data))
     .then(data => jsonWriter('./db.json', data))
-    .catch(e => jsonWriter('./invalid.json', e));
+    .catch(e => jsonWriter('./invalid.json', e));*/
