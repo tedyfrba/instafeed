@@ -1,14 +1,12 @@
-const express = require('express');
-const prcss = require('./process');
+var express = require('express');
+var articles = require('./modules/articles/articles')
 
 var app = express();
+app.use(express.json());
+
+app.use('/articles', articles)
 
 const port = 8000;
-
-app.get('/', function (req, res) {
-  prcss.readDir('./articles/');
-  res.send('processing')
-})
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);

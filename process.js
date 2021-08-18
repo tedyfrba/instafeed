@@ -8,7 +8,8 @@ async function jsonReader(filePath) {
 
 async function jsonWriter(filePath, data) {
     let jsonData = await JSON.stringify(data)+',\n';
-    return await fs.appendFile(filePath, jsonData, 'utf8');
+    fs.appendFile(filePath, jsonData, 'utf8');
+    return Promise.resolve(data);
 }
 
 async function readDir(dirPath) {
@@ -24,9 +25,11 @@ async function readDir(dirPath) {
 }
 
 // readDir('./articles/')
-module.exports.readDir = readDir
+module.exports.jsonValidate = jsonValidate
+module.exports.jsonWriter = jsonWriter
 
-/*jsonReader('./article.json')
-    .then(data => vldtn.validateWithYup(data))
-    .then(data => jsonWriter('./db.json', data))
-    .catch(e => jsonWriter('./invalid.json', e));*/
+async function jsonValidate(jsonString) {
+    return vldtn.validateWithYup(jsonString)
+        .then(data => jsonWriter('./db.json', data))
+        .catch(e => {jsonWriter('./invalid.json', e.value); return Promise.reject(e)});
+}
