@@ -1,11 +1,14 @@
 {
   "name": "instafeed",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.4.0"
+  },
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "process": "node process.js"
+    "start": "node ./app",
+    "devstart": "nodemon ./app"
   },
   "repository": {
     "type": "git",
@@ -26,8 +29,9 @@
     "prettier": "^2.3.2"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "moment": "^2.29.1",
-    "yup": "^0.32.9",
-    "express": "^4.17.1"
+    "mongoose": "^6.0.4",
+    "yup": "^0.32.9"
   }
 }
