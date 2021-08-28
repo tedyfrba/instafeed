@@ -4,7 +4,7 @@ base_url = 'http://localhost:8000/'
 
 get(base_url+ 'articles')
 
-get(base_url+ 'articles?id=asdasdf')
+get(base_url+ 'articles/4a71a08a-b31e-427e-84f3-127a1273ffd2')
 
 post(base_url+ 'articles',
 json={
@@ -15,6 +15,19 @@ json={
   "modifiedAt": "08/04/2021",
   "publishedAt": "06/24/2019",
   "author": "Swathi Prasad",
+  "readMins": 3,
+  "source": "BLOG"
+})
+
+post(base_url+ 'articles',
+json={
+  "id": "6e3beecd-9bbf-4ec1-8960-f15c73c87d99",
+  "title": "A Short Summary On Clean Coding Best Practices",
+  "url": "https://codeburst.io/a-short-summary-on-clean-coding-best-practices-d8afbfa7677",
+  "keywords": ["Software Development", "Coding", "Clean Code"],
+  "modifiedAt": "02/15/2021",
+  "publishedAt": "02/15/2021",
+  "author": "Thilina Ashen Gamage",
   "readMins": 3,
   "source": "BLOG"
 })
