@@ -4,7 +4,7 @@ base_url = 'http://localhost:8000/'
 
 get(base_url+ 'articles')
 
-get(base_url+ 'articles/4a71a08a-b31e-427e-84f3-127a1273ffd2')
+get(base_url+ 'articles/4a1a08a-b31e-427e-84f3-127a1273ffd2')
 
 post(base_url+ 'articles',
 json={
@@ -30,4 +30,27 @@ json={
   "author": "Thilina Ashen Gamage",
   "readMins": 3,
   "source": "BLOG"
+})
+
+delete(base_url+ 'articles/4a71a08a-b31e-427e-84f3-127a1273ffd2')
+
+put(base_url+ 'articles/6e3beecd-9bbf-4ec1-8960-f15c73c87d99',
+json={
+  "id": "6e3beecd-9bbf-4ec1-8960-f15c73c87d99",
+  "title": "A Short Summary On Clean Coding Best Practices",
+  "url": "https://codeburst.io/a-short-summary-on-clean-coding-best-practices-d8afbfa7677",
+  "keywords": ["Software Development", "Coding", "Clean Code"],
+  "modifiedAt": "03/15/2021",
+  "publishedAt": "03/15/2021",
+  "author": "Thilina Ashen Gamage",
+  "readMins": 5,
+  "source": "BLOG"
+})
+
+
+patch(base_url+ 'articles/6e3beecd-9bbf-4ec1-8960-f15c73c87d99',
+json={
+  "modifiedAt": "02/15/2021",
+  "publishedAt": "02/15/2021",
+  "readMins": 3
 })
