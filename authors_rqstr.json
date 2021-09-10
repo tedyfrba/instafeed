@@ -1,0 +1,26 @@
+###env
+base_url = 'http://localhost:8000/'
+###env
+
+get(base_url+ 'authors')
+
+get(base_url+ 'authors/4a1a08a-b31e-427e-84f3-127a1273ffd2')
+
+post(base_url+ 'authors',
+json={
+  "name": "Tadeo Granese"
+})
+
+post(base_url+ 'authors',
+json={
+  "name": "Federico Kereki"
+})
+
+delete(base_url+ 'authors/61436b0dbfdc6b628f1c59f1')
+
+put(base_url+ 'authors/61436bd4f293ce50c4c0d66d',
+json={
+  "name": "Tadeo German Granese"
+})
+
+

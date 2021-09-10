@@ -9,7 +9,7 @@ var ArticleSchm = new Schema({
     keywords: [String],
     modifiedAt: Date,
     publishedAt: Date,
-    author: String,
+    author: { type: Schema.ObjectId, ref: 'Author', required: true },
     readMins: Number,
     source: {
         type: String,

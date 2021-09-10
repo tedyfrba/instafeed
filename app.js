@@ -1,10 +1,5 @@
-var express = require('express');
+
 //TODO add loggger
-
-var articles = require('./modules/articles/articlesRtr')
-
-var app = express();
-
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
@@ -15,10 +10,15 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+var express = require('express');
 
+var app = express();
 app.use(express.json());
 
+var articles = require('./modules/articles/articlesRtr')
+var authors = require('./modules/authors/authorsRtr')
 app.use('/articles', articles)
+app.use('/authors', authors)
 
 
 //TODO add catch 404 
