@@ -23,7 +23,8 @@ async function readDir(dirPath) {
     );
 }
 
-readDir('./articles/')
+// readDir('./articles/')
+module.exports.readDir = readDir
 
 /*jsonReader('./article.json')
     .then(data => vldtn.validateWithYup(data))
